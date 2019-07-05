@@ -10,6 +10,8 @@ g = zeros(size(z));
 %               vector or scalar).
 
 
+% CLEAR 
+
 g = 1 ./ (1+exp(-z))
 
 
