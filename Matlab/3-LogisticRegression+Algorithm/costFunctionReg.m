@@ -17,12 +17,6 @@ grad = zeros(size(theta));
 %               Compute the partial derivatives and set grad to the partial
 %               derivatives of the cost w.r.t. each parameter in theta
 
-
-
-
-
-% CLEAR FROM ex2.mlx FORMULA 
-
 h_theta = sigmoid(X*theta);
 J = (1/m) * (-y' * log(h_theta) - (1-y)' * log(1-h_theta)) + (lambda/(2*m)) * (theta(2:length(theta)))' * theta(2:length(theta));
 

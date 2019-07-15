@@ -14,7 +14,7 @@ J = 0;
 %               You should set J to the cost.
 
 i = 1:m;
-J = (1/(2*m)) * sum( ((theta(1) + theta(2) .* X(i,2)) - y(i)) .^2 )
+J = (1/(2*m)) * sum( ((theta(1) + theta(2) .* X(i,2)) - y(i)) .^2 )   % J= scalar value CLEAR workout by note
                           % (1X1 +  1X1 .* 97X1) ---> ((97X1) - (97X1)) .^2 ----> sum()
 
 % =========================================================================

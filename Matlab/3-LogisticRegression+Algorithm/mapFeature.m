@@ -12,8 +12,7 @@ function out = mapFeature(X1, X2)
 
 
 
-% CLEAR BY WORKOUT NOTEBOOK
-
+% CLEAR By Workout
 degree = 6;
 out = ones(size(X1(:,1)));
 for i = 1:degree

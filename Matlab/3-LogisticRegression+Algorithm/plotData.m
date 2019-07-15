@@ -13,7 +13,7 @@ figure; hold on;
 %
 
 
-% CLEAR BY WORKOUT
+
 
 % Find Indices of Positive and Negative Examples
 pos = find(y==1); neg = find(y == 0);
