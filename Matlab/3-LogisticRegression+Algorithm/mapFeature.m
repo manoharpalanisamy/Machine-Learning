@@ -11,13 +11,12 @@ function out = mapFeature(X1, X2)
 %
 
 
-
 % CLEAR By Workout
 degree = 6;
-out = ones(size(X1(:,1)));
+out = ones(size(X1(:,1))); % set Ones to 1st column 
 for i = 1:degree
     for j = 0:i
-        out(:, end+1) = (X1.^(i-j)).*(X2.^j);
+        out(:, end+1) = (X1.^(i-j)).*(X2.^j);  % end value is 1 already contains column vector 1 , end+1 --> (1+1) from 2 second column assign upto 27 column
     end
 end
 
