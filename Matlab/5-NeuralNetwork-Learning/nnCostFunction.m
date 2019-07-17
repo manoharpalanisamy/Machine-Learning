@@ -14,13 +14,16 @@ function [J grad] = nnCostFunction(nn_params, ...
 %   partial derivatives of the neural network.
 %
 
+
+
+
 % Reshape nn_params(10285X1) back into the parameters Theta1(25X401) -> 10025 and Theta2(10X26) -> (260), the weight matrices
 % for our 2 layer neural network
 Theta1 = reshape(nn_params(1:hidden_layer_size * (input_layer_size + 1)), ...
-                 hidden_layer_size, (input_layer_size + 1));
+                 hidden_layer_size, (input_layer_size + 1)); %(10025,25,401)
 
 Theta2 = reshape(nn_params((1 + (hidden_layer_size * (input_layer_size + 1))):end), ...
-                 num_labels, (hidden_layer_size + 1));
+                 num_labels, (hidden_layer_size + 1)); %(10026:end,10,26)
 
 % Setup some useful variables
 m = size(X, 1); % 5000
@@ -52,7 +55,7 @@ h_theta = sigmoid(z3); % h_theta equals a3 (10X5000)
 % y(k) - the great trick - we need to recode the labels as vectors containing only values 0 or 1 (page 5 of ex4.pdf)
 y_new = zeros(num_labels, m); % 10*5000
 for i=1:m,
-  y_new(y(i),i)=1;
+  y_new(y(i),i)=1;  % <--- CLEAR BY UNDERSTANDING
 end
 
 J = (1/m) * sum ( sum ( (-y_new) .* log(h_theta) - (1-y_new) .* log(1-h_theta) )); %(10X5000) .* (10X5000)  ---> sum(sum(10X5000)) --> sum(1X5000) ---> (real no)
@@ -86,15 +89,18 @@ J = J + Reg;
 % Back propagation
 for t=1:m
 
+    % Feed forward propagation on each row
     % Step 1
-	a1 = X(t,:); % X already have a bias Line 44 (1*401)
-    a1 = a1'; % (401*1)
+	a1 = X(t,:); % X already have a bias Line 47 (1,401) -- 1st row
+    a1 = a1'; % (401X1)
 	z2 = Theta1 * a1; % (25*401)*(401*1)
 	a2 = sigmoid(z2); % (25*1)
     
     a2 = [1 ; a2]; % adding a bias (26*1)
 	z3 = Theta2 * a2; % (10*26)*(26*1)
 	a3 = sigmoid(z3); % final activation layer a3 == h(theta) (10*1)
+    % end forward propagation 
+    
     
     % Step 2
 	delta_3 = a3 - y_new(:,t); % (10*1) <-- (10X1)-(10X1) 
