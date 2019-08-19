@@ -39,7 +39,7 @@ plt.ylabel('Salary')
 plt.show()
 
 # Visualising Test set results
-plt.scatter(X_test, y_test, color='red')
+plt.scatter(X_test, y_test, color='red')  # we have to test the test data how much Training data well fitted on 
 plt.plot(X_train, regressor.predict(X_train), color='blue') # Straight line 
 plt.title('Salary vs Experience (Test set)')
 plt.xlabel('Experiences')
